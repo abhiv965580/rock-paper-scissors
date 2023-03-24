@@ -47,24 +47,24 @@ function printResult(result,playerSelection,computerSelection) {
     }
 }
 function game(){
-    let comp = 0;
-    let player = 0;
+    let compPoints = 0;
+    let playerPoints = 0;
     for(let i = 0; i <5;i++){
         let playerSelection = prompt("Enter your choice: ");
         let computerSelection = getComputerChoice();
         let result = playRound(playerSelection,computerSelection);
         if (result === "Player"){
-            player++;
+            playerPoints++;
         }
         else if (result === "Computer"){
-            comp++;
+            compPoints++;
         }
         printResult(result,playerSelection,computerSelection);
     }
-    if (player > comp){
+    if (playerPoints > compPoints){
         console.log("Player is the Winner!");
     }
-    else if (player < comp){
+    else if (playerPoints < compPoints){
         console.log("Computer is the Winner!");
     }
     else {
