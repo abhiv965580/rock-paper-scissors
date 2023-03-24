@@ -4,7 +4,7 @@ function getComputerChoice(){
     return options[index];
 }
 function playRound(playerSelection,computerSelection) {
-    if (playerSelection.toLowerCase() === computerSelection.toLowerCase){
+    if (playerSelection.toLowerCase() === computerSelection.toLowerCase()){
         return("Tie");
     }
     else if (playerSelection.toLowerCase() === "rock"){
@@ -62,13 +62,13 @@ function game(){
         printResult(result,playerSelection,computerSelection);
     }
     if (playerPoints > compPoints){
-        console.log("Player is the Winner!");
+        alert("Player is the Winner!");
     }
     else if (playerPoints < compPoints){
-        console.log("Computer is the Winner!");
+        alert("Computer is the Winner!");
     }
     else {
-        console.log("It's a Tie!");
+        alert("It's a Tie!");
     }
 }
 game();
