@@ -1,0 +1,33 @@
+.heading{
+    text-align: center;
+}
+.buttons-container{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+#rock{
+    background: brown;
+    color: black;
+}
+#paper{
+    color: black;
+}
+#scissors{
+    background: blue;
+    color: black;
+}
+.results-container{
+    background: pink;
+}
+.scorecard-container{
+    margin-top: 20px;
+}
+.names,.scorecard{
+    display: flex;
+}
+.item{
+    flex: 1;
+    border: black solid 1px;
+    background: cyan;
+}

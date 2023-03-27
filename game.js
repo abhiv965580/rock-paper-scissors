@@ -1,3 +1,19 @@
+let compPoints = 0;
+let playerPoints = 0;
+let playerSelection  = "";
+let computerSelection  = "";
+let body = document.querySelector(".results-container");
+let resultsContainer = document.createElement('div');
+resultsContainer.className = "results";
+body.appendChild(resultsContainer);
+let results = document.querySelector('.results');
+let scoreContainer = document.querySelector('.scorecard');
+let playerScore = document.createElement('div');
+playerScore.className = "item";
+scoreContainer.appendChild(playerScore);
+let compScore = document.createElement('div');
+compScore.className = "item";
+scoreContainer.appendChild(compScore);
 function getComputerChoice(){
     let options = ["Rock", "Paper", "Scissors"];
     const index = Math.floor(Math.random()*options.length);
@@ -37,38 +53,67 @@ function playRound(playerSelection,computerSelection) {
 }
 function printResult(result,playerSelection,computerSelection) {
     if (result === "Player"){
-        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+        playerPoints += 1;
+        
+        let winMsg = document.createElement('div');
+        winMsg.style.color = 'green';
+        winMsg.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+        results.appendChild(winMsg); 
+        
     }
     else if (result === "Computer"){
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+        compPoints += 1;
+        let loseMsg = document.createElement('div');
+        loseMsg.style.color = 'red';
+        loseMsg.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+        results.appendChild(loseMsg); 
     }
     else {
-        console.log("Its a Tie!");
+        let tieMsg = document.createElement('div');
+        tieMsg.style.color = 'grey';
+        tieMsg.textContent = `Game Tied`;
+        results.appendChild(tieMsg); 
     }
 }
-function game(){
-    let compPoints = 0;
-    let playerPoints = 0;
-    for(let i = 0; i <5;i++){
-        let playerSelection = prompt("Enter your choice: ");
-        let computerSelection = getComputerChoice();
-        let result = playRound(playerSelection,computerSelection);
-        if (result === "Player"){
-            playerPoints++;
+function checkResult(){
+    playerScore.textContent = `${playerPoints}`
+    compScore.textContent = `${compPoints}`
+    if (compPoints == 5 || playerPoints == 5){
+        if (compPoints>playerPoints) {
+            alert("You Lose! Better Luck Next TIme");
         }
-        else if (result === "Computer"){
-            compPoints++;
+        else if (playerPoints > compPoints){
+            alert("Congrats! You Won!");
         }
-        printResult(result,playerSelection,computerSelection);
-    }
-    if (playerPoints > compPoints){
-        alert("Player is the Winner!");
-    }
-    else if (playerPoints < compPoints){
-        alert("Computer is the Winner!");
-    }
-    else {
-        alert("It's a Tie!");
+        else{
+            alert("Game Tied");
+        }
+        compPoints = 0;
+        playerPoints = 0;
+        results.innerHTML = '';
     }
 }
-game();
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+rock.addEventListener('click',() =>  {
+    playerSelection  = "rock";
+    computerSelection  = getComputerChoice();
+    let res = playRound(playerSelection, computerSelection);
+    printResult(res,playerSelection,computerSelection);
+    checkResult();
+});
+paper.addEventListener('click',() => {
+    playerSelection = "paper";
+    computerSelection = getComputerChoice();
+    let res = playRound(playerSelection, computerSelection);
+    printResult(res,playerSelection,computerSelection);
+    checkResult();
+});
+scissors.addEventListener('click',() => {
+    playerSelection = "scissors";
+    computerSelection = getComputerChoice();
+    let res = playRound(playerSelection, computerSelection);
+    printResult(res,playerSelection,computerSelection);
+    checkResult();
+});
