@@ -7,14 +7,14 @@
     justify-content: space-around;
 }
 #rock{
-    background: brown;
+    background: rgba(165, 42, 42, 0.555);
     color: black;
 }
 #paper{
     color: black;
 }
 #scissors{
-    background: blue;
+    background: lightblue;
     color: black;
 }
 .results-container{
