@@ -14,12 +14,12 @@ scoreContainer.appendChild(playerScore);
 let compScore = document.createElement('div');
 compScore.className = "item";
 scoreContainer.appendChild(compScore);
-function getComputerChoice(){
+function getComputerChoice(){      //Funtion to get the choice of a computer
     let options = ["Rock", "Paper", "Scissors"];
     const index = Math.floor(Math.random()*options.length);
     return options[index];
 }
-function playRound(playerSelection,computerSelection) {
+function playRound(playerSelection,computerSelection) {  //Function that return who wins the round
     if (playerSelection.toLowerCase() === computerSelection.toLowerCase()){
         return("Tie");
     }
@@ -51,7 +51,7 @@ function playRound(playerSelection,computerSelection) {
         return("Invalid choice!");
     }
 }
-function printResult(result,playerSelection,computerSelection) {
+function printResult(result,playerSelection,computerSelection) {     //Function that prints the result of a round
     if (result === "Player"){
         playerPoints += 1;
         
@@ -75,7 +75,7 @@ function printResult(result,playerSelection,computerSelection) {
         results.appendChild(tieMsg); 
     }
 }
-function checkResult(){
+function checkResult(){         //function to check whether someone reaches 5 Points
     playerScore.textContent = `${playerPoints}`
     compScore.textContent = `${compPoints}`
     if (compPoints == 5 || playerPoints == 5){
