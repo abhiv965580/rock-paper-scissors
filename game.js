@@ -1,6 +1,5 @@
 let compPoints = 0;
 let playerPoints = 0;
-<<<<<<< HEAD
 let playerSelection  = "";
 let computerSelection  = "";
 let body = document.querySelector(".results-container");
@@ -33,7 +32,6 @@ playRound = (playerSelection,computerSelection) => {
                     return("Tie");
             }
         case 'paper':
-<<<<<<< HEAD
             switch(computerSelection) {
                 case 'scissors':
                     return("Computer");
@@ -43,7 +41,6 @@ playRound = (playerSelection,computerSelection) => {
                     return("Tie");
             }
         case 'scissors':
-<<<<<<< HEAD
             switch(computerSelection) {
                 case 'rock':
                     return("Computer");
@@ -57,7 +54,6 @@ playRound = (playerSelection,computerSelection) => {
     }
 }
 
-<<<<<<< HEAD
 //Function that prints the result of a round
 printResult = (result,playerSelection,computerSelection) => {     
     switch(result) {
@@ -86,7 +82,6 @@ printResult = (result,playerSelection,computerSelection) => {
     }
 }
 
-<<<<<<< HEAD
 //function to check whether someone reaches 5 Points
 function checkResult(){        
     playerScore.textContent = `${playerPoints}`
