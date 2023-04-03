@@ -14,68 +14,76 @@ scoreContainer.appendChild(playerScore);
 let compScore = document.createElement('div');
 compScore.className = "item";
 scoreContainer.appendChild(compScore);
-function getComputerChoice(){      //Funtion to get the choice of a computer
-    let options = ["Rock", "Paper", "Scissors"];
-    const index = Math.floor(Math.random()*options.length);
-    return options[index];
-}
-function playRound(playerSelection,computerSelection) {  //Function that return who wins the round
-    if (playerSelection.toLowerCase() === computerSelection.toLowerCase()){
-        return("Tie");
-    }
-    else if (playerSelection.toLowerCase() === "rock"){
-        if (computerSelection.toLowerCase() === "scissors"){
-            return("Player");
-        }
-        else {
-            return("Computer");
-        }
-    }
-    else if (playerSelection.toLowerCase() === "paper"){
-        if (computerSelection.toLowerCase() === "rock"){
-            return("Player");
-        }
-        else {
-            return("Computer");
-        }
-    }
-    else if (playerSelection.toLowerCase() === "scissors"){
-        if (computerSelection.toLowerCase() === "paper"){
-            return("Player");
-        }
-        else {
-            return("Computer");
-        }
-    }
-    else {
-        return("Invalid choice!");
-    }
-}
-function printResult(result,playerSelection,computerSelection) {     //Function that prints the result of a round
-    if (result === "Player"){
-        playerPoints += 1;
-        
-        let winMsg = document.createElement('div');
-        winMsg.style.color = 'green';
-        winMsg.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
-        results.appendChild(winMsg); 
-        
-    }
-    else if (result === "Computer"){
-        compPoints += 1;
-        let loseMsg = document.createElement('div');
-        loseMsg.style.color = 'red';
-        loseMsg.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
-        results.appendChild(loseMsg); 
-    }
-    else {
-        let tieMsg = document.createElement('div');
-        tieMsg.style.color = 'grey';
-        tieMsg.textContent = `Game Tied`;
-        results.appendChild(tieMsg); 
+let options = ["rock", "paper", "scissors"];
+
+//Funtion to get the choice of a computer
+getComputerChoice = () => options[Math.floor(Math.random()*options.length)]
+
+//Function that return who wins the round
+playRound = (playerSelection,computerSelection) => {  
+    switch(playerSelection) {
+        case 'rock':
+            switch(computerSelection) {
+                case 'paper':
+                    return("Computer");
+                case 'scissors':
+                    return("Player");
+                default:
+                    return("Tie");
+            }
+        case 'paper':
+            switch(computerSelection) {
+                case 'scissors':
+                    return("Computer");
+                case 'rock':
+                    return("Player");
+                default:
+                    return("Tie");
+            }
+        case 'scissors':
+            switch(computerSelection) {
+                case 'rock':
+                    return("Computer");
+                case 'paper':
+                    return("Player");
+                default:
+                    return("Tie");
+            }
+        default:
+            return("Invalid Choice");
     }
 }
-function checkResult(){         //function to check whether someone reaches 5 Points
+
+//Function that prints the result of a round
+printResult = (result,playerSelection,computerSelection) => {     
+    switch(result) {
+        case "Player":
+            playerPoints += 1;
+            let winMsg = document.createElement('div');
+            winMsg.style.color = 'green';
+            winMsg.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+            results.appendChild(winMsg);         
+            break;
+        case "Computer":
+            compPoints += 1;
+            let loseMsg = document.createElement('div');
+            loseMsg.style.color = 'red';
+            loseMsg.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+            results.appendChild(loseMsg); 
+            break;
+        case "Tie":
+            let tieMsg = document.createElement('div');
+            tieMsg.style.color = 'grey';
+            tieMsg.textContent = `Game Tied`;
+            results.appendChild(tieMsg); 
+            break;
+        default:
+            console.log("Invalid Choice");
+    }
+}
+
+//function to check whether someone reaches 5 Points
+function checkResult(){        
     playerScore.textContent = `${playerPoints}`
     compScore.textContent = `${compPoints}`
     if (compPoints == 5 || playerPoints == 5){
@@ -93,9 +101,11 @@ function checkResult(){         //function to check whether someone reaches 5 Po
         results.innerHTML = '';
     }
 }
+
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
+
 rock.addEventListener('click',() =>  {
     playerSelection  = "rock";
     computerSelection  = getComputerChoice();
@@ -103,6 +113,7 @@ rock.addEventListener('click',() =>  {
     printResult(res,playerSelection,computerSelection);
     checkResult();
 });
+
 paper.addEventListener('click',() => {
     playerSelection = "paper";
     computerSelection = getComputerChoice();
@@ -110,6 +121,7 @@ paper.addEventListener('click',() => {
     printResult(res,playerSelection,computerSelection);
     checkResult();
 });
+
 scissors.addEventListener('click',() => {
     playerSelection = "scissors";
     computerSelection = getComputerChoice();
@@ -117,3 +129,4 @@ scissors.addEventListener('click',() => {
     printResult(res,playerSelection,computerSelection);
     checkResult();
 });
+checkResult();
