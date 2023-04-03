@@ -1,13 +1,29 @@
 let compPoints = 0;
 let playerPoints = 0;
-let options = ["Rock", "Paper", "Scissors"];
+let playerSelection  = "";
+let computerSelection  = "";
+let body = document.querySelector(".results-container");
+let resultsContainer = document.createElement('div');
+resultsContainer.className = "results";
+body.appendChild(resultsContainer);
+let results = document.querySelector('.results');
+let scoreContainer = document.querySelector('.scorecard');
+let playerScore = document.createElement('div');
+playerScore.className = "item";
+scoreContainer.appendChild(playerScore);
+let compScore = document.createElement('div');
+compScore.className = "item";
+scoreContainer.appendChild(compScore);
+let options = ["rock", "paper", "scissors"];
 
-getComputerChoice = () => options[Math.floor(Math.random() * options.length)]
+//Funtion to get the choice of a computer
+getComputerChoice = () => options[Math.floor(Math.random()*options.length)]
 
-playRound = (playerSelection,computerSelection) => {
-    switch(playerSelection.toLowerCase()) {
+//Function that return who wins the round
+playRound = (playerSelection,computerSelection) => {  
+    switch(playerSelection) {
         case 'rock':
-            switch(computerSelection.toLowerCase()) {
+            switch(computerSelection) {
                 case 'paper':
                     return("Computer");
                 case 'scissors':
@@ -16,7 +32,7 @@ playRound = (playerSelection,computerSelection) => {
                     return("Tie");
             }
         case 'paper':
-            switch(computerSelection.toLowerCase()) {
+            switch(computerSelection) {
                 case 'scissors':
                     return("Computer");
                 case 'rock':
@@ -25,7 +41,7 @@ playRound = (playerSelection,computerSelection) => {
                     return("Tie");
             }
         case 'scissors':
-            switch(computerSelection.toLowerCase()) {
+            switch(computerSelection) {
                 case 'rock':
                     return("Computer");
                 case 'paper':
@@ -38,40 +54,79 @@ playRound = (playerSelection,computerSelection) => {
     }
 }
 
-printResult = (result,playerSelection,computerSelection) => {
+//Function that prints the result of a round
+printResult = (result,playerSelection,computerSelection) => {     
     switch(result) {
         case "Player":
             playerPoints += 1;
-            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+            let winMsg = document.createElement('div');
+            winMsg.style.color = 'green';
+            winMsg.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+            results.appendChild(winMsg);         
             break;
         case "Computer":
             compPoints += 1;
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+            let loseMsg = document.createElement('div');
+            loseMsg.style.color = 'red';
+            loseMsg.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+            results.appendChild(loseMsg); 
             break;
         case "Tie":
-            console.log("Its a Tie!");
+            let tieMsg = document.createElement('div');
+            tieMsg.style.color = 'grey';
+            tieMsg.textContent = `Game Tied`;
+            results.appendChild(tieMsg); 
             break;
         default:
             console.log("Invalid Choice");
     }
 }
 
-game = () => {
-    for(let i = 0; i <5;i++){
-        let playerSelection = prompt("Enter your choice: ");
-        let computerSelection = getComputerChoice();
-        let result = playRound(playerSelection,computerSelection);
-        printResult(result,playerSelection,computerSelection);
-    }
-    if (playerPoints > compPoints){
-        alert("Player is the Winner!");
-    }
-    else if (playerPoints < compPoints){
-        alert("Computer is the Winner!");
-    }
-    else {
-        alert("It's a Tie!");
+//function to check whether someone reaches 5 Points
+function checkResult(){        
+    playerScore.textContent = `${playerPoints}`
+    compScore.textContent = `${compPoints}`
+    if (compPoints == 5 || playerPoints == 5){
+        if (compPoints>playerPoints) {
+            alert("You Lose! Better Luck Next TIme");
+        }
+        else if (playerPoints > compPoints){
+            alert("Congrats! You Won!");
+        }
+        else{
+            alert("Game Tied");
+        }
+        compPoints = 0;
+        playerPoints = 0;
+        results.innerHTML = '';
     }
 }
 
-game();
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+
+rock.addEventListener('click',() =>  {
+    playerSelection  = "rock";
+    computerSelection  = getComputerChoice();
+    let res = playRound(playerSelection, computerSelection);
+    printResult(res,playerSelection,computerSelection);
+    checkResult();
+});
+
+paper.addEventListener('click',() => {
+    playerSelection = "paper";
+    computerSelection = getComputerChoice();
+    let res = playRound(playerSelection, computerSelection);
+    printResult(res,playerSelection,computerSelection);
+    checkResult();
+});
+
+scissors.addEventListener('click',() => {
+    playerSelection = "scissors";
+    computerSelection = getComputerChoice();
+    let res = playRound(playerSelection, computerSelection);
+    printResult(res,playerSelection,computerSelection);
+    checkResult();
+});
+checkResult();
