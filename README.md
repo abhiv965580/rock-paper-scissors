@@ -1,2 +1,1 @@
-# rock-paper-scissors
-A Project which HTML, CSS and JavaScript is used to design to a game called as Rock Paper Scissors 
+Its Rock-Paper-Scissors game in which the user has to select either one of these "Rock", "Paper" or "Scissors" using one of the three buttons each corresponding to its text. It is expected to display the winner when either Computer or the Player reaches a score of 5.
