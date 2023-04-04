@@ -1,1 +1,1 @@
-Its Rock-Paper-Scissors game in which the user has to select either one of these "Rock", "Paper" or "Scissors" using one of the three buttons each corresponding to its text. It is expected to display the winner when either Computer or the Player reaches a score of 5.
+Its a Rock-Paper-Scissors game in the web-page in which the user has to select either one of these "Rock", "Paper" or "Scissors" using one of the three buttons each corresponding to its text. It is expected to display the winner when either Computer or the Player reaches a score of 5.
