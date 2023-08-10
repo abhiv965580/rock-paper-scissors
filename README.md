@@ -14,7 +14,7 @@ Its a Rock-Paper-Scissors game in the web-page in which the user has to select e
 - The winner is announced through the same **alert()** function
 
 ### Project Link: https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors
-### Live Link: https://abhishek310001.github.io/rock-paper-scissors/
+### Live Link: https://abhiv965580.github.io/rock-paper-scissors/
 
 ## UI Screenshot:
 ![Rock-paper-scissors-ui](https://user-images.githubusercontent.com/128154648/229449173-3113b2ed-1f7b-43dc-af0d-d5dd2218f02e.png)
